@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- A:xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 B:layout:decorator="layout"
+	 Aは共通ファイルと同様のもので、これを書くことで共通ファイルの利用ができるようになる
+	 Bは利用する共通ファイルを指定している -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{layout}">
+<head>
+<meta charset="utf-8" />
+<title>top</title>
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<h2>結果</h2>
+		<p>貴方はと相性の良い武将は…</p>
+		<div th:switch="${lord}">
+			<h3 th:case="'真田幸村'" id="busyo">
+				真田幸村<img alt="png" src="/images/真田幸村.png">
+			</h3>
+			<h3 th:case="'徳川家康'" id="busyo">
+				徳川家康<img alt="png" src="/images/家康withホトトギス.png">
+			</h3>
+			<h3 th:case="'伊達政宗'" id="busyo">
+				伊達政宗<img alt="png" src="/images/伊達政宗.png">
+			</h3>
+			<h3 th:case="'石田三成'" id="busyo">
+				石田三成<img alt="png" src="/images/石田三成.png">
+			</h3>
+			<h3 th:case="'毛利元就'" id="busyo">
+				毛利元就<img alt="png" src="/images/毛利元就.png">
+			</h3>
+			<h3 th:case="'黒田官兵衛'" id="busyo">
+				黒田官兵衛<img alt="黒田官兵衛" src="/images/黒田官兵衛.png">
+			</h3>
+			<h3 th:case="'武田信玄'" id="busyo">
+				武田信玄<img alt="武田信玄" src="/images/武田信玄.png">
+			</h3>
+			<h3 th:case="'片倉景綱(小十郎)'" id="busyo">
+				片倉景綱(小十郎)<img alt="片倉景綱(小十郎)" src="/images/カメール.png">
+			</h3>
+		</div>
+		<div class="description">
+			<h4>＜人物説明＞</h4>
+			<p th:text="${lt}" class="p"></p>
+		</div>
+	</div>
+</body>
+</html>

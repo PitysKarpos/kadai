@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- A:xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 B:layout:decorator="layout"
+	 Aは共通ファイルと同様のもので、これを書くことで共通ファイルの利用ができるようになる
+	 Bは利用する共通ファイルを指定している -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{layout}">
+<head>
+<meta charset="utf-8" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<title>診断メーカー</title>
+</head>
+<body>
+	<!-- layout:fragment="content"とすることでこの記述以下のhtmlを、
+	共通ファイルでlayout:fragment="content"と記述した部分と入れ替えることができる -->
+	<div class="container" layout:fragment="content">
+		<h2>武将相性診断ができます</h2>
+		<small>※武将基準：BASARA(５割)、史実(５割)</small>
+		<p>質問に答えていってください</p>
+		<br>
+		<form th:action="@{/html/radio}" th:method="post"
+			th:object="${lordRadio}">
+			<p>Q1.貴方は熱血？それともクール？</p>
+			<div th:each="item : ${radioItems}" class="diagnosis">
+				<label class="radio"><input type="radio"
+					name="selectedRadio" th:value="${item.key}" th:text="${item.value}"
+					th:field="*{selectedRadio}" required /></label>
+			</div>
+			<p>Q2.どちらを動かすほうが得意？</p>
+			<div th:each="item : ${radioItems2}" class="diagnosis">
+				<label class="radio2"><input type="radio"
+					name="selectedRadio2" th:value="${item.key}"
+					th:text="${item.value}" th:field="*{selectedRadio2}" required /></label>
+			</div>
+			<p>Q3.目的のために友達との友情を捨てなければならないとき、捨てられる？</p>
+			<div th:each="item : ${radioItems3}" class="diagnosis">
+				<label class="radio3"><input type="radio"
+					name="selectedRadio3" th:value="${item.key}"
+					th:text="${item.value}" th:field="*{selectedRadio3}" required /></label>
+			</div>
+			<input class="btn-input" type="submit" value="送信">
+		</form>
+	</div>
+</body>
+</html>

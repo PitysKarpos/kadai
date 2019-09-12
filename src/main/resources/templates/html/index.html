@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- A:xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 B:layout:decorator="layout"
+	 Aは共通ファイルと同様のもので、これを書くことで共通ファイルの利用ができるようになる
+	 Bは利用する共通ファイルを指定している -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{layout}">
+<head>
+<meta charset="utf-8" />
+<title>top</title>
+</head>
+<body>
+	<!-- layout:fragment="content"とすることでこの記述以下のhtmlを、
+	共通ファイルでlayout:fragment="content"と記述した部分と入れ替えることができる -->
+	<div class="container" layout:fragment="content">
+		<h2>ここはトップ画面です</h2>
+	</div>
+</body>
+</html>

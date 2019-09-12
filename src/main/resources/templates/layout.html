@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- nこれまでのファイルと違いxmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"が追加されている 
+	この記述を追加することで共通ファイルとして扱うことができるようになる-->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- titleはページごとに変更したいためその対応を記述している 
+	$DECORATOR_TITLEには各ページで定義したtitleが代入される
+	$CONTENT_TITLEには共通ファイル(このファイル)に定義したtitleが代入される -->
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">産廃</title>
+<link rel="stylesheet" href="/css/style.css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/script.js" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+	<header>
+		<h1>産廃</h1>
+		<div class="header">
+			<a href="/html">HOME</a> <a href="/html/new">NEW</a> <a
+				href="/html/show">LIST</a> <a href="/html/diagnosis">診断</a>
+		</div>
+	</header>
+	<!-- <div layout:fragment="content"></div>という目印をつけておくことで、各ページのコンテンツをこの部分と入れ替えることができる -->
+	<div layout:fragment="content"></div>
+	<footer>
+		<p>©Springへの道は遠い…</p>
+	</footer>
+</body>
+</html>

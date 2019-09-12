@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{layout}">
+<head>
+<meta charset="utf-8" />
+<title>一覧</title>
+</head>
+<body>
+	<!-- layout:fragment="content"とすることでこの記述以下のhtmlを、
+	共通ファイルでlayout:fragment="content"と記述した部分と入れ替えることができる -->
+	<div class="container" layout:fragment="content">
+		<h2>ここは一覧画面です</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="id">ID</th>
+					<th class="item">項目名</th>
+					<th>メモ</th>
+					<th class="edit-del" colspan="2">処理</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- ② -->
+				<tr th:each="html: ${html}">
+					<!-- ③ -->
+					<td class="id"><p th:text="${html.id}"></p></td>
+					<td class="item"><p th:text="${html.name}"></p></td>
+					<td><p th:text="${html.text}"></p></td>
+					<td class="edit-del"><a class="edit"
+						th:href="@{/html/{id}/edit(id=${html.id})}">編集</a>
+					<td class="edit-del">
+						<form th:action="@{/html/{id}(id=${html.id})}" th:method="delete">
+							<div id="logout">
+								<input id="btn-delete" type="submit" value="削除" />
+							</div>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
